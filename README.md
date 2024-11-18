@@ -48,10 +48,21 @@ These parameters can be confirmed by mapping our linear function with these calc
 (10 points) Use your estimates of N0 and r to calculate the population size at t = 4980 min, assuming that the population grows exponentially. How does it compare to the population size predicted under logistic growth?
 
 
+Under exponential growth: N(t) = N0 * e^{rt}.
+Substituting in our values of N0 and r at t = 4980:
+
+N is equal to 4.35 x 10^{24}
 
 
 
+Under logistic growth:
+=6.0 x 10^{10}, since it has already reached carrying capacity.
 
 
 ### QUESTION THREE 
 (20 points) Add an R script to your repository that makes a graph comparing the exponential and logistic growth curves (using the same parameter estimates you found). Upload this graph to your repo and include it in the README.md file so it can be viewed in the repo homepage.
+
+<img width="379" alt="image" src="https://github.com/user-attachments/assets/1129cdbb-66e0-4594-ad88-2cb0e0b76b89">
+
+
+
