@@ -120,7 +120,7 @@ This confirms that our linear models have correctly determined the logistic para
 Under exponential growth: N(t) = N0 * e^{rt}.
 Substituting in our values of N0 and r at t = 4980:
 
-N is equal to 4.17 x 10^{24}
+N is equal to 4.17 x $`10^{24}`$
 
 Under logistic growth:
 =6.0 x 10^{10}, since it has already reached carrying capacity.
