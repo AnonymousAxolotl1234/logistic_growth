@@ -73,8 +73,6 @@ This gives us the parameters for the linear model y = b + mx, where in this cont
 Thus, ln(N0) is estimated to be 6.894 and r is estimated to be 0.0100086.
 To get N0, we simply raise e to the power of 6.894, giving us 986.
 
-Therefore, **N0 = 986, r = 0.0100086**
-
 ##### Linear model 2 - when t is large
 <img width="473" alt="image" src="https://github.com/user-attachments/assets/8a9b83a4-0b78-4b04-b78a-fec4b4ed0629">
 
