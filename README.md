@@ -113,8 +113,7 @@ Therefore **N0 = 986, r = 0.0100086, K is 6x10**$`^{10}`$
 ##### Figure 4. Logistic function with predefined parameters obtained from linear model over data points from data set.
 <img width="643" alt="image" src="https://github.com/user-attachments/assets/99412278-e379-43b1-9569-c90c639af137">
 
-This confirms that our linear models have correctly determined the logistic parameters underlying the dataset, as they perfectly map back onto the datapoints. This gives us interpolation and extrapolation powers which are very useful for downstream analysis.
-
+This confirms that our linear models have correctly determined the logistic parameters underlying the dataset, as they perfectly map back onto the datapoints. We can therefore use our logistic function to interpolate during downstream analysis using the a logistic function with the same parameters.
 
 ### QUESTION TWO 
 
