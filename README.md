@@ -117,7 +117,7 @@ This confirms that our linear models have correctly determined the logistic para
 
 ### QUESTION TWO 
 
-Under exponential growth: N(t) = N0 * e^{rt}.
+Under exponential growth: N(t) = N0 * e$`^{rt}`$.
 Substituting in our values of N0 and r at t = 4980:
 
 N is equal to 4.17 x $`10^{24}`$
@@ -147,7 +147,7 @@ exponential_fun <- function(t) {
 #Setting parameters obtained from linear models for both exponential and logistic functions.
 N0 <- 982.401417218
 r <- 0.0100086
-K <- 60000000000 #
+K <- 60000000000 
 
 #Plotting both functions.
 ggplot() +
