@@ -2,9 +2,7 @@
 R scripts for a reproducible analysis of logistic growth
 
 ### QUESTION ONE
-(10 points) Annotate the README.md file in your logistic_growth repo with more detailed information about the analysis. Add a section on the results and include the estimates for N0, r and K (mention which *.csv file you used).
-
-#### Plotting data
+## Plotting data
 
 The first script (plot_data.R) plots the dataset from **experiment.csv**, a simulated experiment, visualising the logistic model. The number of bacteria (N) is on the y-axis, an time (t) on the x-axis. This was carried out using the ggplot2 package, which is a consistent, intuitive and visually appealing method of plotting data on R. The second plot in the script is a semi-log plot (x-axis linear, y-axis log-transferred), which shows an increasing linear relationship at early time points, while at later time points, the population size remains constant.
 ```
@@ -63,7 +61,7 @@ To construct the linear models, we used the lm() function - generating a linear 
 
 The third script (plot_data_and_model.R) creates the logistic_fun function, which allows us to produce our own logistic curve, where we can change the N0, r, and K parameters, which are then superimposed onto the experiment.csv dataset. This allows us to test whether our own parameters match those from the logistic curve in the experiment.csv dataset.
 
-### Results
+## Results
 
 ##### Linear model 1 - when t is small
 <img width="455" alt="image" src="https://github.com/user-attachments/assets/eadd9e74-2d42-40a6-8631-b5318b61a8a4">
@@ -84,7 +82,9 @@ The intercept here is K, which in this case is 6x10^10.
 These parameters can be confirmed by mapping our linear function with these calculated parameters inputted (in red) over data points.
 
 
-##### Figure x. Logistic function with predefined parameters obtained from linear model over data points from data set.
+Therefore **N0 = 986, r = 0.0100086, K is 6x10**$`^{10}`$
+
+##### Figure 4. Logistic function with predefined parameters obtained from linear model over data points from data set.
 <img width="643" alt="image" src="https://github.com/user-attachments/assets/99412278-e379-43b1-9569-c90c639af137">
 
 
@@ -103,12 +103,9 @@ Under logistic growth:
 Therefore, under exponential growth the population size would be significantly larger than under logistic growth (14 orders of magnitude greater!)
 
 
-
-
-
 ### QUESTION THREE 
 
-#### Figure x. Comparative plot contrasting exponential (black) and logistic (red) growth
+#### Figure 5. Comparative plot contrasting exponential (black) and logistic (red) growth
 <img width="634" alt="image" src="https://github.com/user-attachments/assets/c99b581c-6c8e-4d5f-bece-f64cf9be04bb">
 
 
