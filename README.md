@@ -4,7 +4,7 @@ R scripts for a reproducible analysis of logistic growth
 ### QUESTION ONE
 ## Plotting data
 
-The first script (plot_data.R) plots the dataset from **experiment.csv**, a simulated experiment, visualising the logistic model. The number of bacteria (N) is on the y-axis, an time (t) on the x-axis. This was carried out using the ggplot2 package, which is a consistent, intuitive and visually appealing method of plotting data on R. The second plot in the script is a semi-log plot (x-axis linear, y-axis log-transferred), which shows an increasing linear relationship at early time points, while at later time points, the population size remains constant.
+The first script (plot_data.R) plots the dataset from **experiment.csv**, a simulated experiment, visualising the logistic model. The number of bacteria (N) is on the y-axis, an time (t) on the x-axis. This was carried out using the ggplot2 package, which is a consistent, intuitive and visually appealing method of plotting data on R. The second plot in the script is a semi-log plot (x-axis linear, y-axis log-transferred), which shows an increasing linear relationship at early time points, while at later time points, the population size remains constant. This semi-log plot is useful for the future linear model analysis.
 ```
 #Script to plot the logistic growth data
 library(ggplot2)
@@ -53,13 +53,41 @@ ggplot(aes(t,N, color = threshold), data = growth_data) +
 
 ### Fitting linear models 
 
-The second script (fit_linear_model.R) produces two separate linear models for the semi-logged data - one where t is small, and one where t is large, in which there are two very different relationships which can easily be seen via the semi-log plot. To do this, we used the dplyr package to filter the dataset (using filter() when t is large or small).
+The second script (fit_linear_model.R) produces two separate linear models for the semi-logged data - one where t is small, and one where t is large, in which there are two very different relationships which can easily be seen via the semi-log plot. To do this, we used the dplyr package to filter the dataset (using filter() when t is large or small). This allows us to predict the underlying logistic parameters.
 
-To construct the linear models, we used the lm() function - generating a linear model using log_N as the response variable, and t as the explanatory variable. The summary() function then was used to obtain the parameter estimates for the slopes and intercepts of the two different linear models.
+To construct the linear models, we used the lm() function - generating a linear model using log_N as the response variable, and t as the explanatory variable. The summary() function then was used to obtain the parameter estimates for the slopes and intercepts of the two different linear models. This chunk of code below explains how the data was put into subsets and how the linear models were created.
+
+
+```
+#Case 1. K >> N0, t is small
+
+data_subset1 <- growth_data %>% 
+  filter(t<1500) %>% 
+  mutate(N_log = log(N))
+
+model1 <- lm(N_log ~ t, data_subset1)
+summary(model1)
+
+#Case 2. N(t) = K
+
+data_subset2 <- growth_data %>% filter(t>2500)
+
+model2 <- lm(N ~ 1, data_subset2)
+summary(model2)
+
+```
+
+
+
+
+
+
+
+
 
 ### Plotting our own models
 
-The third script (plot_data_and_model.R) creates the logistic_fun function, which allows us to produce our own logistic curve, where we can change the N0, r, and K parameters, which are then superimposed onto the experiment.csv dataset. This allows us to test whether our own parameters match those from the logistic curve in the experiment.csv dataset.
+The third script (plot_data_and_model.R) creates the logistic_fun function, which allows us to produce our own logistic curve, where we can change the N0, r, and K parameters, which are then superimposed onto the experiment.csv dataset. This allows us to test whether our own parameters match those from the logistic curve in the experiment.csv dataset. The code below shows how the function was created.
 
 ## Results
 
@@ -85,7 +113,7 @@ Therefore **N0 = 986, r = 0.0100086, K is 6x10**$`^{10}`$
 ##### Figure 4. Logistic function with predefined parameters obtained from linear model over data points from data set.
 <img width="643" alt="image" src="https://github.com/user-attachments/assets/99412278-e379-43b1-9569-c90c639af137">
 
-
+This confirms that our linear models have correctly determined the logistic parameters underlying the dataset, as they perfectly map back onto the datapoints. This gives us interpolation and extrapolation powers which are very useful for downstream analysis.
 
 
 ### QUESTION TWO 
@@ -103,9 +131,41 @@ Therefore, under exponential growth the population size would be significantly l
 
 ### QUESTION THREE 
 
+The code below shows how two separate functions - logistic and exponential were compared on a single plot - I chose to use a semi-log plot as it leads to the most intuitive illustration of the relationship between exponential and logistic functions.
+```
+
+#Defining logistic function
+logistic_fun <- function(t) {
+  N <- (N0*K*exp(r*t))/(K-N0+N0*exp(r*t))
+  return(N)
+}
+#Defining exponential function
+exponential_fun <- function(t) {
+  N <- (N0 * exp(r*t))
+  return(N)
+}
+
+#Setting parameters obtained from linear models for both exponential and logistic functions.
+N0 <- 982.401417218
+r <- 0.0100086
+K <- 60000000000 #
+
+#Plotting both functions.
+ggplot() +
+  geom_function(fun=logistic_fun, colour="red") +
+  geom_function(fun=exponential_fun, colour ='black') +
+  xlim(0, 5000) +
+  scale_y_continuous(trans='log10') +
+  xlab("Time (min)") +
+  ylab("Pop. Size") +
+  theme_bw()
+  
+```
+
 #### Figure 5. Comparative plot contrasting exponential (black) and logistic (red) growth
 <img width="634" alt="image" src="https://github.com/user-attachments/assets/c99b581c-6c8e-4d5f-bece-f64cf9be04bb">
 
+This plot shows the significant difference between logistic and exponential models - notably, the discrepancy significantly increases over time. Therefore, over very short amounts of time it may be appropriate to use exponential models. However, over longer time periods, exponential models become increasingly biologically unrealistic, and should be avoided.
 
 
 
