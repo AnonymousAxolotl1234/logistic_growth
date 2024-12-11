@@ -75,14 +75,18 @@ This gives us the parameters for the linear model y = b + mx, where in this cont
 Thus, ln(N0) is estimated to be 6.894 and r is estimated to be 0.0100086.
 To get N0, we simply raise e to the power of 6.894, giving us 986.
 
+Therefore, **N0 = 986, r = 0.0100086**
+
 ##### Linear model 2 - when t is large
 <img width="473" alt="image" src="https://github.com/user-attachments/assets/8a9b83a4-0b78-4b04-b78a-fec4b4ed0629">
 
 The intercept here is K, which in this case is 6x10^10.
+These parameters can be confirmed by mapping our linear function with these calculated parameters inputted (in red) over data points.
 
-These parameters can be confirmed by mapping our linear function with these calculated parameters inputted (in red) over the plot of the dataset.
 
-<img width="689" alt="image" src="https://github.com/user-attachments/assets/bb2fdd3a-d10e-4988-b4fc-e65314feedde">
+##### Figure x. Logistic function with predefined parameters obtained from linear model over data points from data set.
+<img width="643" alt="image" src="https://github.com/user-attachments/assets/99412278-e379-43b1-9569-c90c639af137">
+
 
 
 
