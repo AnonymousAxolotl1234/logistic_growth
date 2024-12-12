@@ -122,7 +122,7 @@ Substituting in our values of N0 and r at t = 4980:
 N is equal to 4.17 x $`10^{24}`$
 
 Under logistic growth:
-=6.0 x 10^{10}, since it has already reached carrying capacity.
+=6.0 x 10 $` ^{10} `$, since it has already reached carrying capacity.
 
 Therefore, under exponential growth the population size would be significantly larger than under logistic growth (14 orders of magnitude greater!)
 
