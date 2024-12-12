@@ -1,26 +1,33 @@
 #Script to plot the logistic growth data
-
+library(ggplot2)
 growth_data <- read.csv("experiment.csv")
 
-library(ggplot2)
-
+#Logistic plot
 ggplot(aes(t,N), data = growth_data) +
-  
   geom_point() +
-  
-  xlab("t") +
-  
-  ylab("y") +
-  
+  xlab("Time (min)") +
+  ylab("Pop. Size") +
   theme_bw()
 
+#Semilog plot
 ggplot(aes(t,N), data = growth_data) +
-  
   geom_point() +
+  xlab("Time (min)") +
+  ylab("Pop. Size") +
+  scale_y_continuous(trans='log10') +
+  theme_bw()
   
-  xlab("t") +
-  
-  ylab("y") +
-  
-  scale_y_continuous(trans='log10')
+#Semilog plot - distinguishing when t small or large 
+
+growth_data$threshold <- ifelse(
+  growth_data$t<=2000, 'Below', 'Above'
+)
+
+ggplot(aes(t,N, color = threshold), data = growth_data) +
+  geom_point() +
+  xlab("Time (min)") +
+  ylab("Pop. Size") +
+  scale_y_continuous(trans='log10') +
+  theme_bw() +
+  theme(legend.position = 'none')
 
